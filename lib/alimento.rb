@@ -1,6 +1,6 @@
-require "alimentos/version"
+require "alimento/version"
 
-module Alimentos
+module Alimento
   class Error < StandardError; end
   # Your code goes here...
 end
