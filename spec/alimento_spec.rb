@@ -7,8 +7,8 @@ RSpec.describe Alimento do
     @carne_cordero = Alimento::Alimento.new("Carne de Cordero",18,0,17,20,185.0)
     @camarones = Alimento::Alimento.new("Camarones",17.6,1.5,0.6,18.0,2.0)
   end
-  
-  context "Comprobando que existan los atributos" do 
+
+  context "Comprobando que existan los atributos" do
     it "Se ha podido comprobar que existe el nombre" do
       expect(@carne.name).not_to be nil
       expect(@carne_cordero.name).not_to be nil
@@ -25,7 +25,7 @@ RSpec.describe Alimento do
       expect(@camarones.terreno).not_to be nil
     end
   end
-  
+
   context "Probando los getters" do
     it "Probando get Nombre" do
       expect(@carne.get_name).to eq("Carne de Vaca")
