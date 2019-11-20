@@ -3,19 +3,19 @@ require 'alimento'
 
 RSpec.describe Alimento do
   before (:all) do
-    % Alimentos
+    # Alimentos
     @carne = Alimento::Alimento.new("Carne de Vaca", 21.1, 0, 3.1, 50, 164)
     @carne_cordero = Alimento::Alimento.new("Carne de Cordero",18,0,17,20,185.0)
     @camarones = Alimento::Alimento.new("Camarones",17.6,1.5,0.6,18.0,2.0)
 
-    % Nodos
+    # Nodos
     @nodo1 = Alimento::List::Node.new(@carne, nil, nil)
     @nodo2 = Alimento::List::Node.new(@carne_cordero, nil, @nodo1)
     @nodo3 = Alimento::List::Node.new(@camarones, nil, @nodo2)
     @nodo1.next = @nodo2
     @nodo2.next = @nodo3
 
-    % Listas
+    # Listas
     @lista1 = Alimento::List.new
   end
 
