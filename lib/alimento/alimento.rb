@@ -9,7 +9,7 @@ module Alimento
       @name, @p, @g, @l, @emision, @terreno = name, p, g, l, emision, terreno
       @@alimentos << self
     end
-    
+
     # Getters
     def get_name
       return @name

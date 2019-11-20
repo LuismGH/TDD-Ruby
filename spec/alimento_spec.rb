@@ -3,14 +3,20 @@ require 'alimento'
 
 RSpec.describe Alimento do
   before (:all) do
+    % Alimentos
     @carne = Alimento::Alimento.new("Carne de Vaca", 21.1, 0, 3.1, 50, 164)
     @carne_cordero = Alimento::Alimento.new("Carne de Cordero",18,0,17,20,185.0)
     @camarones = Alimento::Alimento.new("Camarones",17.6,1.5,0.6,18.0,2.0)
+
+    % Nodos
     @nodo1 = Alimento::List::Node.new(@carne, nil, nil)
     @nodo2 = Alimento::List::Node.new(@carne_cordero, nil, @nodo1)
     @nodo3 = Alimento::List::Node.new(@camarones, nil, @nodo2)
     @nodo1.next = @nodo2
     @nodo2.next = @nodo3
+
+    % Listas
+    @lista1 = Alimento::List.new
   end
 
   context "Comprobando que existan los atributos" do
@@ -99,6 +105,36 @@ RSpec.describe Alimento do
     it "Comprobando que exista un previo" do
       expect(@nodo2.prev).not_to be nil
       expect(@nodo3.prev).not_to be nil
+    end
+  end
+
+  context "Comprobando los datos de los nodos" do
+    it "Comprobando dato" do
+      expect(@nodo1.value).to eq(@carne)
+      expect(@nodo2.value).to eq(@carne_cordero)
+      expect(@nodo3.value).to eq(@camarones)
+    end
+    it "Comprobando siguiente nodo" do
+      expect(@nodo1.next).to eq(@nodo2)
+      expect(@nodo2.next).to eq(@nodo3)
+      expect(@nodo3.next).to be nil
+    end
+    it "Comprobando nodo previo" do
+      expect(@nodo1.prev).to be nil
+      expect(@nodo2.prev).to eq(@nodo1)
+      expect(@nodo3.prev).to eq(@nodo2)
+    end
+  end
+
+  context "Probando las listas doblemente enlazadas" do
+    it "Comprobando que exista la lista" do
+      expect(@lista1).not_to be nil
+    end
+    it "Comprobando que exista una cabeza" do
+      expect(@lista1.head).not_to be nil
+    end
+    it "Comprobando que exista una cola" do
+      expect(@lista1.tail).not_to be nil
     end
   end
 end
