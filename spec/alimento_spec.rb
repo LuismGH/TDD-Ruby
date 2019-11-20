@@ -6,9 +6,11 @@ RSpec.describe Alimento do
     @carne = Alimento::Alimento.new("Carne de Vaca", 21.1, 0, 3.1, 50, 164)
     @carne_cordero = Alimento::Alimento.new("Carne de Cordero",18,0,17,20,185.0)
     @camarones = Alimento::Alimento.new("Camarones",17.6,1.5,0.6,18.0,2.0)
-    @nodo1 = Node.new(@carne, @nodo2, nil)
-    @nodo2 = Node.new(@carne_cordero, @nodo3, @nodo1)
-    @nodo3 = Node.new(@camarones, nil, @nodo2)
+    @nodo1 = Alimento::List::Node.new(@carne, nil, nil)
+    @nodo2 = Alimento::List::Node.new(@carne_cordero, nil, @nodo1)
+    @nodo3 = Alimento::List::Node.new(@camarones, nil, @nodo2)
+    @nodo1.next = @nodo2
+    @nodo2.next = @nodo3
   end
 
   context "Comprobando que existan los atributos" do
@@ -86,9 +88,9 @@ RSpec.describe Alimento do
 
   context "Probando nodos de listas doblemente enlazadas" do
     it "Comprobando que exista un dato" do
-      expect(@nodo1.name).not_to be nil
-      expect(@nodo2.name).not_to be nil
-      expect(@nodo3.name).not_to be nil
+      expect(@nodo1.value).not_to be nil
+      expect(@nodo2.value).not_to be nil
+      expect(@nodo3.value).not_to be nil
     end
     it "Comprobando que exista un siguiente" do
       expect(@nodo1.next).not_to be nil
