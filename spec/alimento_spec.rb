@@ -28,34 +28,34 @@ RSpec.describe Alimento do
   
   context "Probando los getters" do
     it "Probando get Nombre" do
-      expect(@carne.get_name).to eq("Carne de Vaca")
-      expect(@carne_cordero.get_name).to eq("Carne de Cordero")
-      expect(@camarones.get_name).to eq("Camarones")
+      expect(@carne.name).to eq("Carne de Vaca")
+      expect(@carne_cordero.name).to eq("Carne de Cordero")
+      expect(@camarones.name).to eq("Camarones")
     end
     it "Probando get Proteínas" do
-      expect(@carne.get_proteinas).to eq(21.1)
-      expect(@carne_cordero.get_proteinas).to eq(18)
-      expect(@camarones.get_proteinas).to eq(17.6)
+      expect(@carne.p).to eq(21.1)
+      expect(@carne_cordero.p).to eq(18)
+      expect(@camarones.p).to eq(17.6)
     end
     it "Probando get Glúcidos" do
-      expect(@carne.get_glucidos).to eq(0)
-      expect(@carne_cordero.get_glucidos).to eq(0.0)
-      expect(@camarones.get_glucidos).to eq(1.5)
+      expect(@carne.g).to eq(0)
+      expect(@carne_cordero.g).to eq(0.0)
+      expect(@camarones.g).to eq(1.5)
     end
     it "Probando get Lípidos" do
-      expect(@carne.get_lipidos).to eq(3.1)
-      expect(@carne_cordero.get_lipidos).to eq(17.0)
-      expect(@camarones.get_lipidos).to eq(0.6)
+      expect(@carne.l).to eq(3.1)
+      expect(@carne_cordero.l).to eq(17.0)
+      expect(@camarones.l).to eq(0.6)
     end
     it "Probando get Emisiones" do
-      expect(@carne.get_emisiones).to eq(50)
-      expect(@carne_cordero.get_emisiones).to eq(20)
-      expect(@camarones.get_emisiones).to eq(18.0)
+      expect(@carne.emision).to eq(50)
+      expect(@carne_cordero.emision).to eq(20)
+      expect(@camarones.emision).to eq(18.0)
     end
     it "Probando get Terreno" do
-      expect(@carne.get_terreno).to eq(164)
-      expect(@carne_cordero.get_terreno).to eq(185.000)
-      expect(@camarones.get_terreno).to eq(2.00)
+      expect(@carne.terreno).to eq(164)
+      expect(@carne_cordero.terreno).to eq(185.000)
+      expect(@camarones.terreno).to eq(2.00)
     end
     it "Probando get Valor Energético" do
       expect(@carne.get_valor_energetico).to be_within(0.01).of(112.3)
