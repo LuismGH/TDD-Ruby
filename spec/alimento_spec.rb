@@ -117,6 +117,7 @@ RSpec.describe Alimento do
 	  it "Probando operador ==" do
 	    expect(@carne == @carne).to eq(true)
 		expect(@carne == @carne_cordero).to eq(false)
+		expect(@camarones == @carne_cordero).to eq(false)
 	  end
 	  it "Probando between" do
 	    expect(@carne.between?(@camarones, @carne_cordero)).to eq(true)
