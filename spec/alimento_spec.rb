@@ -16,7 +16,13 @@ RSpec.describe Alimento do
     @nodo2.next = @nodo3
 
     # Listas
-    @lista1 = Alimento::List.new(@carne)
+    @lista1 = Alimento::List.new
+    @lista2 = Alimento::List.new
+    @lista2.insert(@carne)
+    @lista2.insert(@carne_cordero)
+    @lista2.insert(@camarones)
+    @lista2.insert(@carne)
+    @lista2.insert(@carne_cordero)
   end
   
   describe Alimento::Alimento do
@@ -172,33 +178,40 @@ RSpec.describe Alimento do
         expect(@lista1).not_to be nil
       end
       it "Comprobando que exista una cabeza" do
-        expect(@lista1.head).not_to be nil
+        @lista1.insert(@carne)
+        expect(@lista1.head).not_to eq(@carne)
       end
       it "Comprobando que exista una cola" do
-        expect(@lista1.tail).not_to be nil
+        expect(@lista1.tail).not_to eq(@carne)
+      end
+      it "Probando insert" do
+        @lista1.insert(@carne_cordero)
+        expect(@lista1.search(@carne_cordero)).to eq(true)
+      end
+      it "Probando el extraer la cabeza" do
+        expect(@lista1.remove_head).to eq(@carne)
+      end
+      it "Probando el extraer la cola" do
+        @lista1.insert(@camarones)
+        expect(@lista1.remove_tail).to eq(@camarones)
       end
     end
-	
+
 	  context "Probando el Módulo Enumerable en las listas" do
-	    it "Probando each" do
-	      expect(@lista1.each { |x| puts x }).to eq(@carne.to_s)
-	    end
 	    it "Probando collect" do
-	      expect(@lista1.collect { @camarones }).to eq([@camarones])
+	      expect(@lista2.collect { @camarones }).to eq([@camarones, @camarones, @camarones, @camarones, @camarones])
 	    end
 	    it "Probando select" do
-	      @lista1.insert(@carne_cordero)
-		    @lista1.insert(@carne)
-	      expect(@lista1.select { |x| x == @carne }).to eq([@carne])
+	      expect(@lista2.select { |x| x == @carne }).to eq([@carne, @carne])
 	    end
 	    it "Probando max" do
-	      expect(@lista1.max).to eq(@carne_cordero)
+	      expect(@lista2.max).to eq(@carne_cordero)
 	    end
 	    it "Probando min" do
-	      expect(@lista1.min).to eq(@camarones)
+	      expect(@lista2.min).to eq(@camarones)
 	    end
 	    it "Probando sort" do
-	      expect(@lista1.sort).to eq([@camarones,@carne,@carne_cordero])
+	      expect(@lista2.sort).to eq([@camarones,@carne,@carne,@carne_cordero,@carne_cordero])
 	    end
 	  end
   end
