@@ -93,41 +93,41 @@ RSpec.describe Alimento do
       end
     end
 	
-	context "Probando los operadores de comparación" do
-	  it "Probando operador <=>" do
-	    expect(@carne <=> @carne_cordero).to eq(-1)
-		expect(@carne_cordero <=> @carne).to eq(1)
+	  context "Probando los operadores de comparación" do
+	    it "Probando operador <=>" do
+	      expect(@carne <=> @carne_cordero).to eq(-1)
+		  expect(@carne_cordero <=> @carne).to eq(1)
+	    end
+	    it "Probando operador <" do
+	      expect(@carne < @carne_cordero).to eq(true)
+		    expect(@carne_cordero < @carne).to eq(false)
+	    end
+	    it "Probando operador <=" do
+	      expect(@carne <= @carne).to eq(true)
+		    expect(@carne_cordero <= @carne).to eq(false)
+	    end
+	    it "Probando operador >" do
+	      expect(@carne > @carne_cordero).to eq(false)
+		    expect(@carne_cordero > @carne).to eq(true)
+	    end
+	    it "Probando operador >=" do
+	      expect(@carne >= @carne_cordero).to eq(false)
+		    expect(@carne >= @carne).to eq(true)
+	    end
+	    it "Probando operador ==" do
+	      expect(@carne == @carne).to eq(true)
+		    expect(@carne == @carne_cordero).to eq(false)
+		    expect(@camarones == @carne_cordero).to eq(false)
+	    end
+	    it "Probando between" do
+	      expect(@carne.between?(@camarones, @carne_cordero)).to eq(true)
+		    expect(@carne.between?(@carne_cordero, @camarones)).to eq(false)
+	    end
+	    it "Probando clamp" do
+	      expect(@carne.clamp(@camarones, @carne_cordero)).to eq(@carne)
+		    expect(@camarones.clamp(@carne, @carne_cordero)).to eq(@carne)
+	    end
 	  end
-	  it "Probando operador <" do
-	    expect(@carne < @carne_cordero).to eq(true)
-		expect(@carne_cordero < @carne).to eq(false)
-	  end
-	  it "Probando operador <=" do
-	    expect(@carne <= @carne).to eq(true)
-		expect(@carne_cordero <= @carne).to eq(false)
-	  end
-	  it "Probando operador >" do
-	    expect(@carne > @carne_cordero).to eq(false)
-		expect(@carne_cordero > @carne).to eq(true)
-	  end
-	  it "Probando operador >=" do
-	    expect(@carne >= @carne_cordero).to eq(false)
-		expect(@carne >= @carne).to eq(true)
-	  end
-	  it "Probando operador ==" do
-	    expect(@carne == @carne).to eq(true)
-		expect(@carne == @carne_cordero).to eq(false)
-		expect(@camarones == @carne_cordero).to eq(false)
-	  end
-	  it "Probando between" do
-	    expect(@carne.between?(@camarones, @carne_cordero)).to eq(true)
-		expect(@carne.between?(@carne_cordero, @camarones)).to eq(false)
-	  end
-	  it "Probando clamp" do
-	    expect(@carne.clamp(@camarones, @carne_cordero)).to eq(@carne)
-		expect(@camarones.clamp(@carne, @carne_cordero)).to eq(@carne)
-	  end
-	end
   end
   
   describe Alimento::List do
@@ -178,5 +178,28 @@ RSpec.describe Alimento do
         expect(@lista1.tail).not_to be nil
       end
     end
+	
+	  context "Probando el Módulo Enumerable en las listas" do
+	    it "Probando each" do
+	      expect(@lista1.each { |x| puts x }).to eq(@carne.to_s)
+	    end
+	    it "Probando collect" do
+	      expect(@lista1.collect { @camarones }).to eq([@camarones])
+	    end
+	    it "Probando select" do
+	      @lista1.insert(@carne_cordero)
+		    @lista1.insert(@carne)
+	      expect(@lista1.select { |x| x == @carne }).to eq([@carne])
+	    end
+	    it "Probando max" do
+	      expect(@lista1.max).to eq(@carne_cordero)
+	    end
+	    it "Probando min" do
+	      expect(@lista1.min).to eq(@camarones)
+	    end
+	    it "Probando sort" do
+	      expect(@lista1.sort).to eq([@camarones,@carne,@carne_cordero])
+	    end
+	  end
   end
 end
