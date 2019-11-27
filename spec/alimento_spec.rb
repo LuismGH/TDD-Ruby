@@ -258,4 +258,24 @@ RSpec.describe Alimento do
       end
     end
   end
+
+  describe Alimento::PlatoDieta do
+    context "Probando el Plato de la Dieta" do
+      it "Comprobando valor total de la emisiones diarias de de gases" do
+        expect(@plato_dieta_bestial.valor_emisiones).to eq()
+      end
+      it "Comprobando estimación de los metros cuadrados de uso de terreno" do
+        expect(@plato_dieta_bestial.valor_terreno).to eq()
+      end
+      it "Comprobando que se obtiene la eficiencia energética formateada" do
+        expect(@plato_dieta_bestial.valor_energetico).to eq()
+      end
+      it "Comprobando la clase" do
+        expect(@plato_dieta_bestial.instance_of? PlatoDieta).to eq(true)
+      end
+      it "Comprobando si es un tipo de Plato" do
+        expect(@plato_dieta_bestial.is_a? Plato).to eq(true)
+      end
+    end
+  end
 end
