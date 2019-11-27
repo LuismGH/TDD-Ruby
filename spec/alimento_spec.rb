@@ -233,7 +233,7 @@ RSpec.describe Alimento do
   describe Alimento::Plato do
     context "Probando Plato" do
       it "Obteniendo el nombre del Plato" do
-        expect(@plato.name).to eq("Plato Bestia")
+        expect(@plato.nombre).to eq("Plato Bestia")
       end
       it "Comprobando que existe un conjunto de alimentos" do
         expect(@plato.alimentos).to_not be nil
@@ -248,13 +248,13 @@ RSpec.describe Alimento do
         expect(@plato.porcentaje_hidratos).to eq(0.56)
       end
       it "Porcentaje de lípidos del conjunto de alimentos" do
-        expect(@plato.porcentaje_lipidos).to eq(13.02)
+        expect(@plato.porcentaje_lipidos).to eq(13.03)
       end
       it "Valor Calórico Total del conjunto de alimentos expresado en kilocalorías" do
-        expect(@plato.valor_calorico).to eq(11733)
+        expect(@plato.valor_calorico).to eq(12498)
       end
       it "Se obtiene el plato formateado" do
-        expect(@plato.to_s).to eq("Alimento::Plato: Plato Bestia, 86.42% proteínas, 0.56% hidratos, 13.02% lípidos, 11733kcal")
+        expect(@plato.to_s).to eq("Alimento::Plato: Plato Bestia, 86.42% proteínas, 0.56% hidratos, 13.03% lípidos, 12498.0kcal")
       end
     end
   end
