@@ -352,19 +352,19 @@ RSpec.describe Alimento do
 
     context "Modificaciones para que las Intancias de PlatoDieta sean enumerables" do
       it "Probando collect" do
-        expect(@lista_platos.collect { @plato_ligero }).to eq([@plato_ligero, @plato_ligero, @plato_ligero, @plato_ligero, @plato_ligero, @plato_ligero])
+        expect(@lista_plato.collect { @plato_ligero }).to eq([@plato_ligero, @plato_ligero, @plato_ligero, @plato_ligero, @plato_ligero, @plato_ligero])
       end
       it "Probando select" do
-        expect(@lista_platos.select { |x| x == @plato_dieta_bestial }).to eq([@plato_dieta_bestial, @plato_dieta_bestial])
+        expect(@lista_plato.select { |x| x == @plato_dieta_bestial }).to eq([@plato_dieta_bestial, @plato_dieta_bestial])
       end
       it "Probando max" do
-        expect(@lista_platos.max).to eq(@plato_pesado)
+        expect(@lista_plato.max).to eq(@plato_pesado)
       end
       it "Probando min" do
-        expect(@lista_platos.min).to eq(@plato_ligero)
+        expect(@lista_plato.min).to eq(@plato_ligero)
       end
       it "Probando sort" do
-        expect(@lista_platos.sort).to eq([@plato_ligero,@plato_ligero,@plato_dieta_bestial,@plato_dieta_bestial,@plato_pesado,@plato_pesado])
+        expect(@lista_plato.sort).to eq([@plato_ligero,@plato_ligero,@plato_dieta_bestial,@plato_dieta_bestial,@plato_pesado,@plato_pesado])
       end
     end
   end
