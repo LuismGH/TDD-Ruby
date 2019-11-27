@@ -17,12 +17,26 @@ RSpec.describe Alimento do
 
     # Listas
     @lista1 = Alimento::List.new
+
     @lista2 = Alimento::List.new
     @lista2.insert(@carne)
     @lista2.insert(@carne_cordero)
     @lista2.insert(@camarones)
     @lista2.insert(@carne)
     @lista2.insert(@carne_cordero)
+
+    @lista_plato = Alimento::List.new
+    @lista_plato.insert(@carne)
+    @lista_plato.insert(@carne_cordero)
+    @lista_plato.insert(@camarones)
+
+    @lista_cantidades = Alimento::List.new
+    @lista_cantidades.insert(100)
+    @lista_cantidades.insert(2)
+    @lista_cantidades.insert(10)
+
+    # Platos
+    @plato = Alimento::Plato.new("Plato Bestia", @lista_plato, @lista_cantidades)
   end
   
   describe Alimento::Alimento do
@@ -214,5 +228,34 @@ RSpec.describe Alimento do
 	      expect(@lista2.sort).to eq([@camarones,@carne,@carne,@carne_cordero,@carne_cordero])
 	    end
 	  end
+  end
+
+  describe Alimento::Plato do
+    context "Probando Plato" do
+      it "Obteniendo el nombre del Plato" do
+        expect(@plato.name).to eq("Plato Bestia")
+      end
+      it "Comprobando que existe un conjunto de alimentos" do
+        expect(@plato.alimentos).to_not be nil
+      end
+      it "Comprobando que existe un conjunto de cantidades de alimentos en gramos" do
+        expect(@plato.cantidades).to_not be nil
+      end
+      it "Porcentaje de proteínas del conjunto de alimentos" do
+        expect(@plato.porcentaje_proteinas).to eq(86.42)
+      end
+      it "Porcentaje de hidratos de carbono del conjunto de alimentos" do
+        expect(@plato.porcentaje_hidratos).to eq(0.56)
+      end
+      it "Porcentaje de lípidos del conjunto de alimentos" do
+        expect(@plato.porcentaje_lipidos).to eq(13.02)
+      end
+      it "Valor Calórico Total del conjunto de alimentos expresado en kilocalorías" do
+        expect(@plato.valor_calorico).to eq(11733)
+      end
+      it "Se obtiene el plato formateado" do
+        expect(@plato.to_s).to eq("Alimento::Plato: Plato Bestia, 86.42% proteínas, 0.56% hidratos, 13.02% lípidos, 11733kcal")
+      end
+    end
   end
 end
