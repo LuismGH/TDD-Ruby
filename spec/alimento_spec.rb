@@ -35,11 +35,37 @@ RSpec.describe Alimento do
     @lista_cantidades.insert(2)
     @lista_cantidades.insert(10)
 
+    @lista_plato1 = Alimento::List.new
+    @lista_plato1.insert(@carne)
+    @lista_plato1.insert(@carne_cordero)
+    @lista_plato1.insert(@carne_cordero)
+    @lista_plato1.insert(@carne_cordero)
+    @lista_plato1.insert(@carne_cordero)
+
+    @lista_cantidades1 = Alimento::List.new
+    @lista_cantidades1.insert(100)
+    @lista_cantidades1.insert(2000)
+    @lista_cantidades1.insert(2000)
+    @lista_cantidades1.insert(20)
+    @lista_cantidades1.insert(400)
+
+    @lista_plato2 = Alimento::List.new
+    @lista_plato2.insert(@carne)
+    @lista_plato2.insert(@camarones)
+    @lista_plato2.insert(@camarones)
+
+    @lista_cantidades2 = Alimento::List.new
+    @lista_cantidades2.insert(10)
+    @lista_cantidades2.insert(20)
+    @lista_cantidades2.insert(5)
+
     # Platos
     @plato = Alimento::Plato.new("Plato Bestia", @lista_plato, @lista_cantidades)
 
     # Platos de Dieta
     @plato_dieta_bestial = Alimento::PlatoDieta.new("Dieta Bestial", @lista_plato, @lista_cantidades)
+    @plato_pesado = Alimento::PlatoDieta.new("Dieta Pesada", @lista_plato1, @lista_cantidades1)
+    @plato_ligero = Alimento::PlatoDieta.new("Dieta Ligera", @lista_plato2, @lista_cantidades2)
   end
   
   describe Alimento::Alimento do
@@ -278,6 +304,41 @@ RSpec.describe Alimento do
       end
       it "Comprobando si es un tipo de Plato" do
         expect(@plato_dieta_bestial.is_a? Alimento::Plato).to eq(true)
+      end
+    end
+
+    context "Modificaciones para que las Intancias de PlatoDieta sean comparables" do
+      it "Probando operador <=>" do
+        expect(@plato_dieta_bestial <=> @plato_pesado).to eq(-1)
+        expect(@plato_dieta_bestial <=> @plato_pesado).to eq(1)
+      end
+      it "Probando operador <" do
+        expect(@plato_dieta_bestial < @plato_pesado).to eq(true)
+        expect(@plato_dieta_bestial < @plato_pesado).to eq(false)
+      end
+      it "Probando operador <=" do
+        expect(@plato_dieta_bestial <= @plato_dieta_bestial).to eq(true)
+        expect(@plato_dieta_bestial <= @plato_pesado).to eq(false)
+      end
+      it "Probando operador >" do
+        expect(@plato_dieta_bestial > @plato_pesado).to eq(false)
+        expect(@plato_pesado > @plato_dieta_bestial).to eq(true)
+      end
+      it "Probando operador >=" do
+        expect(@plato_dieta_bestial >= @carne_cordero).to eq(false)
+        expect(@plato_dieta_bestial >= @plato_dieta_bestial).to eq(true)
+      end
+      it "Probando operador ==" do
+        expect(@plato_dieta_bestial == @plato_dieta_bestial).to eq(true)
+        expect(@plato_dieta_bestial == @plato_ligero).to eq(false)
+      end
+      it "Probando between" do
+        expect(@plato_dieta_bestial.between?(@plato_ligero, @plato_pesado)).to eq(true)
+        expect(@plato_ligero.between?(@plato_dieta_bestial, @plato_pesado)).to eq(false)
+      end
+      it "Probando clamp" do
+        expect(@plato_dieta_bestial.clamp(@plato_ligero, @plato_pesado)).to eq(@plato_dieta_bestial)
+        expect(@plato_pesado.clamp(@plato_ligero, @plato_dieta_bestial)).to eq(@plato_dieta_bestial)
       end
     end
   end
