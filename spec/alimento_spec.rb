@@ -43,7 +43,7 @@ RSpec.describe Alimento do
     @lista_plato1.insert(@carne_cordero)
 
     @lista_cantidades1 = Alimento::List.new
-    @lista_cantidades1.insert(100)
+    @lista_cantidades1.insert(1000000)
     @lista_cantidades1.insert(2000)
     @lista_cantidades1.insert(2000)
     @lista_cantidades1.insert(20)
@@ -310,22 +310,21 @@ RSpec.describe Alimento do
     context "Modificaciones para que las Intancias de PlatoDieta sean comparables" do
       it "Probando operador <=>" do
         expect(@plato_dieta_bestial <=> @plato_pesado).to eq(-1)
-        expect(@plato_dieta_bestial <=> @plato_pesado).to eq(1)
       end
       it "Probando operador <" do
         expect(@plato_dieta_bestial < @plato_pesado).to eq(true)
-        expect(@plato_dieta_bestial < @plato_pesado).to eq(false)
+        expect(@plato_pesado < @plato_dieta_bestial).to eq(false)
       end
       it "Probando operador <=" do
         expect(@plato_dieta_bestial <= @plato_dieta_bestial).to eq(true)
-        expect(@plato_dieta_bestial <= @plato_pesado).to eq(false)
+        expect(@plato_dieta_bestial <= @plato_pesado).to eq(true)
       end
       it "Probando operador >" do
         expect(@plato_dieta_bestial > @plato_pesado).to eq(false)
         expect(@plato_pesado > @plato_dieta_bestial).to eq(true)
       end
       it "Probando operador >=" do
-        expect(@plato_dieta_bestial >= @carne_cordero).to eq(false)
+        expect(@plato_dieta_bestial >= @plato_pesado).to eq(false)
         expect(@plato_dieta_bestial >= @plato_dieta_bestial).to eq(true)
       end
       it "Probando operador ==" do

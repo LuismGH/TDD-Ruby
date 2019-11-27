@@ -22,8 +22,8 @@ module Alimento
     end
 
     # Definición del Método del Mixin
-	def <=>(other)
-	  return nil unless other.instance_of? Alimento 
+	  def <=>(other)
+	    return nil unless other.instance_of? Alimento 
       get_valor_energetico <=> other.get_valor_energetico
     end
 	
