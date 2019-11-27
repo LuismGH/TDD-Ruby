@@ -37,6 +37,9 @@ RSpec.describe Alimento do
 
     # Platos
     @plato = Alimento::Plato.new("Plato Bestia", @lista_plato, @lista_cantidades)
+
+    # Platos de Dieta
+    @plato_dieta_bestial = Alimento::PlatoDieta.new("Dieta Bestial", @lista_plato, @lista_cantidades)
   end
   
   describe Alimento::Alimento do
@@ -262,19 +265,19 @@ RSpec.describe Alimento do
   describe Alimento::PlatoDieta do
     context "Probando el Plato de la Dieta" do
       it "Comprobando valor total de la emisiones diarias de de gases" do
-        expect(@plato_dieta_bestial.valor_emisiones).to eq()
+        expect(@plato_dieta_bestial.valor_emisiones).to eq(5220)
       end
       it "Comprobando estimación de los metros cuadrados de uso de terreno" do
-        expect(@plato_dieta_bestial.valor_terreno).to eq()
+        expect(@plato_dieta_bestial.valor_terreno).to eq(16790)
       end
       it "Comprobando que se obtiene la eficiencia energética formateada" do
-        expect(@plato_dieta_bestial.valor_energetico).to eq()
+        expect(@plato_dieta_bestial.to_s).to eq("12498.0kcal")
       end
       it "Comprobando la clase" do
-        expect(@plato_dieta_bestial.instance_of? PlatoDieta).to eq(true)
+        expect(@plato_dieta_bestial.instance_of? Alimento::PlatoDieta).to eq(true)
       end
       it "Comprobando si es un tipo de Plato" do
-        expect(@plato_dieta_bestial.is_a? Plato).to eq(true)
+        expect(@plato_dieta_bestial.is_a? Alimento::Plato).to eq(true)
       end
     end
   end
