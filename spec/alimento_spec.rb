@@ -137,6 +137,7 @@ RSpec.describe Alimento do
     context "Probando el Formateado del alimento" do
       it "Probando el to_s" do
         expect(@carne.to_s).to eq("Alimento::Alimento: Carne de Vaca,21.1,0,3.1,50,164")
+        expect(@plato_dieta_bestial.instance_of? Alimento::PlatoDieta).to eq(true)
         expect(@carne_cordero.to_s).to eq("Alimento::Alimento: Carne de Cordero,18,0,17,20,185.0")
         expect(@camarones.to_s).to eq("Alimento::Alimento: Camarones,17.6,1.5,0.6,18.0,2.0")
       end
@@ -365,6 +366,34 @@ RSpec.describe Alimento do
       end
       it "Probando sort" do
         expect(@lista_plato.sort).to eq([@plato_ligero,@plato_ligero,@plato_dieta_bestial,@plato_dieta_bestial,@plato_pesado,@plato_pesado])
+      end
+    end
+  end
+
+  describe "Menú" do
+    before :each do
+      # MENU
+      @menu_dietetico = [@plato_ligero, @plato_dieta_bestial, @plato_pesado]
+      @precios = [20, 10, 5]
+      @maxima_huella = @menu_dietetico.collect { |plato| plato.huella_nutricional }.max
+      if @maxima_huella < 1.5
+      	@incremento = 0.10
+      elsif @maxima_huella > 2.5
+      	@incremento = 0.50
+      else
+      	@incremento = 0.20
+      end
+      @precios_incrementados = @precios.collect { |precio| precio += precio * @incremento }
+    end
+    context "Probando los menús (arrays de platos)" do
+      it "Calculando la huella nutricional máxima de un menú dietético" do
+        expect(@maxima_huella).to eq(3.0)
+      end
+      it "Probando el porcentaje de incremento del menú" do
+      	expect(@incremento).to eq(0.50)
+      end
+      it "Probando el incremento del menú" do
+      	expect(@precios_incrementados).to eq([30, 15, 7.5])
       end
     end
   end
