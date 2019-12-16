@@ -1,2 +1,6 @@
-## 0.1 (11/11/2019)
-## 0.2 (27/11/2019)
+## 0.1 - 11/11/2019
+Primera Versión del Proyecto
+## 0.2.0 - 27/11/2019
+Versión Actualizada
+## 1.2.0 - 16/12/2019
+Incluida la Documentación y varias clases

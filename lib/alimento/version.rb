@@ -1,3 +1,4 @@
 module Alimento
-  VERSION = "0.1.0"
+  # Versión Actual del Módulo
+  VERSION = "1.2.0"
 end
