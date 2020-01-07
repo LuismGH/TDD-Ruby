@@ -12,7 +12,7 @@ module Alimento
     attr_reader :cantidades
 
     # Método para la creación de un objeto
-  	def initialize(nombre, alimentos, cantidades)
+  	def initialize(nombre, alimentos = nil, cantidades = nil, &block)
   		@nombre, @alimentos, @cantidades = nombre, alimentos, cantidades
   	end
 

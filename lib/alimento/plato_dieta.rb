@@ -5,7 +5,7 @@ module Alimento
   class PlatoDieta < Plato
 
     # Método para la creación de un objeto
-  	def initialize(nombre, alimentos, cantidades)
+  	def initialize(nombre, alimentos = List.new, cantidades = List.new)
   	  super(nombre, alimentos, cantidades)
   	end
 
