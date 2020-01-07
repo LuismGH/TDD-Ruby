@@ -397,4 +397,67 @@ RSpec.describe Alimento do
       end
     end
   end
+
+  describe Alimento::PlatoDSL do
+    before :all do
+      @plato_dsl = Alimento::PlatoDSL.new("Hamburguesa") do
+        Nombre "Hamburguesa Especial de la casa"
+        Alimento :descripcion => "Carne de Vaca",
+                 :proteinas => 21.1,
+                 :glucidos => 0,
+                 :lipidos => 3.1,
+                 :emisiones => 164,
+                 :terreno => 50,
+                 :gramos => 100
+        Alimento :descripcion => "Huevos",
+                 :proteinas => 13,
+                 :glucidos => 1.1,
+                 :lipidos => 11,
+                 :emisiones => 5.7,
+                 :terreno => 4.2,
+                 :gramos => 20
+        Alimento :alimento => @camarones = Alimento::Alimento.new("Camarones",17.6,1.5,0.6,18.0,2.0),
+                 :gramos => 5
+      end
+    end
+
+    context "Probando Plato con DSL" do
+      it "Probando nombre" do
+        expect(@plato_dsl.nombre).to eq("Hamburguesa Especial de la casa")
+      end
+      it "Probando Alimento" do
+        expect(@plato_dsl.alimentos.head.value).to eq(Alimento::Alimento.new("Carne de Vaca",21.1,0,3.1,164,50))
+      end
+      it "Probando una instancia de Alimento" do
+        expect(@plato_dsl.alimentos.tail.value).to eq(@camarones)
+      end
+      it "Probando cantidades" do
+        expect(@plato_dsl.cantidades.head.value).to eq(100)
+      end
+    end 
+  end
+
+  describe Alimento::Menu do
+    before :all do
+      @menu = Alimento::Menu.new("Combinado nº 1") do
+        Descripcion "Plato Carnívoro Descomunal"
+        Componente :descripcion => "Plato Bestial",
+                   :alimentos => @lista_plato,
+                   :cantidades => @lista_cantidades,
+                   :precio => 50.50
+        Precio 50.50
+      end
+    end
+    context "Probando Menú Dietético" do
+      it "Probando nombre" do
+        expect(@menu.nombre).to eq("Combinado nº 1")
+      end
+      it "Probando descripcion" do
+        expect(@menu.descripcion).to eq("Plato Carnívoro Descomunal")
+      end
+      it "Probando Precio" do
+        expect(@menu.precio).to eq(50.50)
+      end
+    end
+  end
 end
