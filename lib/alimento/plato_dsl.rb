@@ -13,7 +13,7 @@ module Alimento
   	  end
   	end
   	# Método para el DSL
-  	def Nombre(nombre)
+        def Nombre(nombre)
       @nombre = nombre
     end
     # Método para el DSL
